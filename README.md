@@ -18,7 +18,7 @@
 uv sync
 ```
 
-3. Fill environment variables in .env (see below)
+3. Fill environment variables in .env
 ```bash
 cp .env.example .env
 ```
@@ -102,7 +102,7 @@ PYTHONPATH=./ uv run pytest ./tests
 
 ## 7. Demo video
 
-[Demo Video]()
+[Demo Video](https://www.loom.com/share/a5abaf74814a4de28c6d621273f7010e)
 
 ---
 
