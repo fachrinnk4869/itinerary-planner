@@ -1,4 +1,7 @@
 # Project README — PoC Autonomous Vacation Planner
+## Demo video
+
+[Demo Video](https://www.loom.com/share/a5abaf74814a4de28c6d621273f7010e)
 
 ## Requirements
 - python 3.11
@@ -98,15 +101,10 @@ PYTHONPATH=./ uv run pytest ./tests
 * Pydantic (schema validation)
 * Git
 
----
-
-## 7. Demo video
-
-[Demo Video](https://www.loom.com/share/a5abaf74814a4de28c6d621273f7010e)
 
 ---
 
-## 8. Risks & Vulnerabilities
+## 7. Risks & Vulnerabilities
 
 > For each risk: (1) attack scenario, (2) likelihood & impact, (3) mitigations (budget-conscious), (4) monitoring
 
