@@ -6,7 +6,9 @@ from fastapi import Query
 
 class itineraryQuery(BaseModel):
     input: str = Query(
-        default="Plan a romantic 4-day trip to Bali next month. Booking OK.", description="User input for itinerary planning")
+        default="Plan a romantic 4-day trip to Bali next month. Booking OK.",
+        min_length=1,
+        description="User input for itinerary planning")
     auto_book: bool = Query(
         default=False, description="Whether to auto book the trip or not")
 

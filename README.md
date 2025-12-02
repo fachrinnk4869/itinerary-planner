@@ -4,13 +4,13 @@
 - python 3.11
 - uv [download link](https://docs.astral.sh/uv/getting-started/installation/)
 
-# 1. Quick start — Run app (step-by-step)
+## 1. Quick start — Run app (step-by-step)
 
 1. Clone repo
 
    ```bash
-   git clone <your-repo-url>
-   cd <repo>
+   git clone https://github.com/fachrinnk4869/itinerary-planner
+   cd itinerary-planner
    ```
 
 2. Install all library/dependencies
@@ -28,6 +28,11 @@ cp .env.example .env
 ```python
 uv run uvicorn app:app --reload
 ```
+5 Run tests
+
+```python
+PYTHONPATH=./ uv run pytest ./tests
+```
 
 5. Access:
 
@@ -37,7 +42,7 @@ uv run uvicorn app:app --reload
 
 ---
 
-# 2. Folder structure (recommended PoC layout)
+## 2. Folder structure
 
 ```
 /.
@@ -57,19 +62,19 @@ uv run uvicorn app:app --reload
 │─ edges.py
 │─ prompt.py
 ├─ README.md
-│─ app.py # <-- Fast API 
+│─ app.py ## <-- Fast API 
 ```
 
 ---
 
-# 3. How the app is used (minimal)
+## 3. How the app is used
 
 * `GET /itinerary` user message → LangGraph workflow runs nodes: `intent_extraction` → `planning` → `booking` → `payment` if `auto_booking` true → `final_response`. returns last generated `FinalTripPlan`.
 * Payment: if `auto_booking` true
 
 ---
 
-# 4. Problems found during PoC (short)
+## 4. Problems found during PoC
 
 * **State type mismatch** — `MessagesPlaceholder` expected `List[BaseMessage]`, but calendar provided as `dict` → ValueError.
 * **Putting structured objects into `messages`** — appended Pydantic result directly into `messages` (must wrap into `AIMessage` or keep structured state separate).
@@ -78,11 +83,11 @@ uv run uvicorn app:app --reload
 
 ---
 
-# 5. Architecture (ASCII)
-[architecture]()
+## 5. Architecture
+![image](assets/assistX_architecture.png)
 ---
 
-# 6. Tech stack
+## 6. Tech stack
 
 * uv
 * Python 3.11+
@@ -94,13 +99,13 @@ uv run uvicorn app:app --reload
 
 ---
 
-# 7. Demo video (how to produce)
+## 7. Demo video
 
 [Demo Video]()
 
 ---
 
-# 8. Risks & Vulnerabilities (detailed)
+## 8. Risks & Vulnerabilities
 
 > For each risk: (1) attack scenario, (2) likelihood & impact, (3) mitigations (budget-conscious), (4) monitoring
 
@@ -146,14 +151,7 @@ uv run uvicorn app:app --reload
 3. **Mitigation:** require per-item confirmation OR single-use granular consent; code-enforced budgets and destination locks.
 4. **Monitoring:** log consent events; alert when bookings happen without fresh user action.
 
-### 7) LLM output validation bypass (malformed fields / code injection)
-
-1. **Scenario:** LLM outputs malicious strings in structured fields.
-2. **Likelihood/Impact:** High / Medium-high.
-3. **Mitigation:** strict Pydantic validation; sandbox any downstream use of LLM output; never `eval` strings.
-4. **Monitoring:** count validation failures; log rejected outputs (sanitized).
-
-### 8) Memory store leakage
+### 7) Memory store leakage
 
 1. **Scenario:** Conversation memory contains payment tokens or PII and gets exfiltrated.
 2. **Likelihood/Impact:** Medium / High.
@@ -162,7 +160,7 @@ uv run uvicorn app:app --reload
 
 ---
 
-# 9. Where to expand for production
+# 8. Where to expand for production
 
 * Replace mock payment with real provider SDK (Stripe/PayPal/Xendit) and use tokenization.
 * Harden auth (OAuth2, session policies).
