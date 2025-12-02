@@ -91,6 +91,7 @@ PYTHONPATH=./ uv run pytest ./tests
 
 * uv
 * Python 3.11+
+* LLM (Gemini)
 * FastAPI (HTTP server)
 * Uvicorn (ASGI)
 * LangGraph / LangChain (workflow / agents) — or minimal orchestrator if not available
